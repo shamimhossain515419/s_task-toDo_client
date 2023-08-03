@@ -1,16 +1,24 @@
 import { FaBars } from 'react-icons/fa';
-
+import { AiOutlineArrowRight, } from 'react-icons/ai';
 import { Link, NavLink } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import Container from '../../Component/Container';
 import Menu from '../../Component/Menu/Menu';
+import { AuthContact } from '../../Component/AuthProvider/AuthProvider';
+
+import ProfileModal from './ProfileModal';
 const Navbar = () => {
 
      const [Open, setOpen] = useState(true);
      const [dropDown, setDeopWown] = useState(false);
-     const user=false;
+     const { user, loading } = useContext(AuthContact);
+     const [showModal, setShowModal] = useState(false)
+     console.log(user);
+
+     
+
      return (
-          <div>
+          <div className=' relative'>
 
                <nav className='px-2 w-full bg-white  text-black  fixed       top-0  left-0 right-0 z-50   py-2 shadow-lg'>
                     <Container>
@@ -33,15 +41,15 @@ const Navbar = () => {
                                    <div className=' hidden  md:flex justify-center items-center gap-4'>
 
                                         {
-                                             user ? <div onClick={() => setDeopWown(!dropDown)} className='  cursor-pointer'>
-                                                  <img className=' border-2 border-blue-500 h-14 w-14 rounded-full object-cover ' src={user?.photoURL} alt="" />
-                                             </div> : <div  className='  cursor-pointer bg-[#E2EAF8] textColor  text-lg font-medium text-white px-4 py-2 rounded-md mx-2'>
-                                                  Login/Sing
-                                             </div>
+                                             user ? <div onClick={() => setDeopWown(!dropDown)} className='  cursor-pointer  flex items-center gap-2'>
+                                                  <p className=' text-xl font-normal uppercase '>{user?.displayName} </p>
+                                                  <img onClick={() => setShowModal(!showModal)} className=' border-2 border-blue-500 h-12 w-12 rounded-full object-cover ' src={user?.photoURL} alt="" />
+                                             </div> : <Link className='  cursor-pointer bg-[#E2EAF8] textColor  text-lg font-medium text-white px-4 py-2 rounded-md mx-2 flex items-center gap-1'>
+                                                  <AiOutlineArrowRight></AiOutlineArrowRight>
+                                                  <span className=' text-xl font-medium uppercase '> GetStart</span>
+                                             </Link>
                                         }
-                                        <div className=' bg-[#0058f0]   text-lg font-medium text-white px-4 py-2 rounded-md mx-2'>
-                                             Job  Post
-                                        </div>
+
 
                                    </div>
 
@@ -71,6 +79,10 @@ const Navbar = () => {
                     </Container>
 
                </nav>
+               {
+                    showModal ? <ProfileModal></ProfileModal> : null
+               }
+
           </div>
      );
 };
