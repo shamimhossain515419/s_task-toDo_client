@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  color: #202124;
+  font-family: 'Roboto', sans-serif;
+}
+
+.textColor {
+  color: #1967D2;
+}
+
+.BgColor {
+  background-color: #1967D2;
+}
+
+.LogoStyle {
+  color: #1967D2;
+
+}
+
+
+
+.Modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.BgCoustomColor {
+  background-color: #F0F5F7;
+
+}
+
+.boxshadow {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
