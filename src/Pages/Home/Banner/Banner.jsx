@@ -20,7 +20,7 @@ const Banner = () => {
                <Container>
                     <div className=' max-h-[400px] mx-auto  max-w-[400px]'>
                          <Lottie options={defaultOptions}
-                              
+
                          />
 
                     </div>

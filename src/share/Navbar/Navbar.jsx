@@ -15,7 +15,7 @@ const Navbar = () => {
      const [showModal, setShowModal] = useState(false)
      console.log(user);
 
-     
+
 
      return (
           <div className=' relative'>
