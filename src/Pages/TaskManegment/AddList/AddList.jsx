@@ -5,17 +5,18 @@ import { useContext, useState } from 'react';
 import { AuthContact } from '../../../Component/AuthProvider/AuthProvider';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { toast } from 'react-hot-toast'
+import TaskApi from '../../../Api/Taskapi';
 const AddList = ({ setShowModal }) => {
      const { user } = useContext(AuthContact);
      const [date, setData] = useState('');
      const [axiosSecure] = useAxiosSecure();
+     const [refetch] = TaskApi()
 
      const handleSubmit = (e) => {
           e.preventDefault();
           const from = e.target;
           const title = from.title.value;
           const description = from.description.value;
-
           const TaskData = { title, description, date, name: user?.displayName, email: user?.email, status: 'pending', time: new Date() };
           console.log(TaskData);
 
@@ -23,6 +24,7 @@ const AddList = ({ setShowModal }) => {
                console.log(result);
                if (result) {
                     setShowModal(false)
+                    refetch();
                     toast.success('Successfully Task add!')
                }
           }).catch(error => {

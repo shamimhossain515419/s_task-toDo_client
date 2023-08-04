@@ -4,15 +4,15 @@ import { HiOutlinePhotograph } from 'react-icons/hi';
 import { FcGoogle } from 'react-icons/fc';
 import { TbAccessPoint } from 'react-icons/tb';
 
-import { Link } from 'react-router-dom';
-import  toast,{ Toaster } from 'react-hot-toast'
+import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast'
 import { AuthContact } from '../Component/AuthProvider/AuthProvider';
 import { useState, useContext } from 'react';
 const Register = () => {
      const [imgeLoading, setImageLoading] = useState(false);
      const [image, setImage] = useState("");
-     const { CreateUser ,updateProfilePhoto} = useContext(AuthContact)
-
+     const { CreateUser, GoogelSing, updateProfilePhoto } = useContext(AuthContact)
+     const navigate = useNavigate()
      const handleSubmit = (e) => {
           e.preventDefault();
           const from = e.target;
@@ -40,7 +40,14 @@ const Register = () => {
           })
 
      }
-
+     const handleGooglesing = () => {
+          GoogelSing().then(result => {
+               navigate('/')
+               toast.success('Successfully google login!')
+          }).catch(error => {
+               toast.error(`${error.massage}`)
+          })
+     }
      const handleChange = (event) => {
           const selectedImage = event.target.files[0];
           setImageLoading(true)
@@ -116,7 +123,7 @@ const Register = () => {
                               </div>
 
                               <div className=' my-8 flex w-full  justify-center items-center gap-3'>
-                                   <div className=' cursor-pointer w-1/2 border py-2 rounded-md text-center  border-[#226ce3] '>
+                                   <div onClick={handleGooglesing} className=' cursor-pointer w-1/2 border py-2 rounded-md text-center  border-[#226ce3] '>
                                         <FcGoogle className=' mx-auto' size={32}></FcGoogle>
                                    </div>
                                    <div className='cursor-pointer border w-1/2  py-2  rounded-md text-center  border-[#226ce3] '>
@@ -127,9 +134,9 @@ const Register = () => {
                     </div>
                </div>
                <Toaster
-          position="top-center"
-          reverseOrder={false}
-        />
+                    position="top-center"
+                    reverseOrder={false}
+               />
 
           </div>
      );

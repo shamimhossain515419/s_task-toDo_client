@@ -3,12 +3,12 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContact } from '../Component/AuthProvider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast'
 const Login = () => {
-     const { Login } = useContext(AuthContact)
-
+     const { Login, GoogelSing } = useContext(AuthContact)
+     const navigate = useNavigate();
      const handleLogin = (e) => {
           e.preventDefault();
           const from = e.target;
@@ -17,13 +17,23 @@ const Login = () => {
 
           Login(email, password).then(result => {
                if (result) {
-
+                    navigate('/')
                     toast.success('Successfully Register!')
                }
           }).catch(error => {
-               console.log(error.massage);
+
+               toast.error(`${error.massage}`)
           })
 
+     }
+
+     const handleGooglesing = () => {
+          GoogelSing().then(result => {
+                navigate('/')
+               toast.success('Successfully google login!')
+          }).catch(error => {
+               toast.error(`${error.massage}`)
+          })
      }
 
      return (
@@ -32,12 +42,10 @@ const Login = () => {
                     {/* Login  part  */}
                     <div className='Modal  w-full    relative  z-50 min-w-[240px] max-w-[700px] lg:min-w-[700px] shadow mx-auto  md:p-6  rounded bg-white   '>
 
-                         <div className=' bg-[#b1aaaa8a] absolute right-2 top-1 p-2 rounded-md  hover:text-white hover:bg-[#0e73e6]'>
-                              <AiOutlineClose size={24} onClick={() => setOpenModal(false)}> Delete</AiOutlineClose>
-                         </div>
+                    
                          <div>
                               <div className='   my-2 flex items-center justify-center '>
-                                   <h1 className=' text-2xl font-semibold my-4'> job opportunities</h1>
+                                   <h1 className=' text-2xl font-semibold my-4'> S-task-todo</h1>
 
                               </div>
                               <div className=' px-4  md:px-10'>
@@ -68,7 +76,7 @@ const Login = () => {
                                    </div>
 
                                    <div className=' my-8 flex w-full  justify-center items-center gap-3'>
-                                        <div className=' cursor-pointer w-1/2 border py-2 rounded-md text-center  border-[#226ce3] '>
+                                        <div onClick={handleGooglesing} className=' cursor-pointer w-1/2 border py-2 rounded-md text-center  border-[#226ce3] '>
                                              <FcGoogle className=' mx-auto' size={32}></FcGoogle>
                                         </div>
                                         <div className='cursor-pointer border w-1/2  py-2  rounded-md text-center  border-[#226ce3] '>
