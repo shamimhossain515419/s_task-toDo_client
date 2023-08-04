@@ -17,7 +17,7 @@ const AddList = ({ setShowModal }) => {
           const from = e.target;
           const title = from.title.value;
           const description = from.description.value;
-          const TaskData = { title, description, date, name: user?.displayName, email: user?.email, status: 'pending', time: new Date() };
+          const TaskData = { title, description, date, name: user?.displayName, email: user?.email, status:'Pending', time: new Date() };
           console.log(TaskData);
 
           axiosSecure.post('/task', TaskData).then(result => {

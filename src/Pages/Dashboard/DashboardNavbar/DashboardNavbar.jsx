@@ -1,13 +1,13 @@
 import { useContext, useState } from 'react';
 import { AiOutlineHome, AiOutlineSetting } from 'react-icons/ai';
-import { MdRoundaboutRight } from 'react-icons/md';
+import { BsPenFill } from 'react-icons/bs';
 import { FiLogIn } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import { AuthContact } from '../../../Component/AuthProvider/AuthProvider';
 const DashboardNavbar = () => {
      const { user } = useContext(AuthContact);
      return (
-          <div className=' textColor mt-32  '>
+          <div className='  mt-32  p-4 '>
 
                <img src={user?.photoURL} className='  my-4 block mx-auto h-24 w-24 rounded-full
                      border-2 border-blue-500 ' alt="" />
@@ -18,11 +18,11 @@ const DashboardNavbar = () => {
                     <h2 className=' text-xl font-semibold'> Dashboard</h2>
                </NavLink>
                <NavLink to={'/dashboard/task'} className={({ isActive }) => isActive ? 'mt-2   my-4 flex gap-2 items-center text-blue-500' : 'mt-2   my-4 flex gap-2 items-center'}>
-                    <MdRoundaboutRight size={24}></MdRoundaboutRight>
-                    <h2 className=' text-xl font-semibold'> task</h2>
+                    <BsPenFill size={24}></BsPenFill>
+                    <h2 className=' text-xl font-semibold'>my Task</h2>
                </NavLink>
 
-               <hr className=' mt-5' />
+               
                <div className='  '>
                     <div className=' mt-10 absolute bottom-0'>
                          <NavLink to={'/setting'} className='mt-2  flex gap-2 items-center'>

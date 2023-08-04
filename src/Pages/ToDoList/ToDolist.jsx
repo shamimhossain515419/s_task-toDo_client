@@ -126,7 +126,7 @@ const ToDoList = () => {
                                                             <td onClick={() => handleUpdate(item?._id)}>
 
                                                                  {
-                                                                      item?.status == "Pending" ? <> <div className=" cursor-pointer text-[#fa06dd]">
+                                                                      item?.status=="Pending" ? <> <div className=" cursor-pointer text-[#fa06dd]">
                                                                            <MdPanoramaFishEye size={24}></MdPanoramaFishEye>
                                                                       </div>  </> : <><div className=" cursor-none text-[#2d74de]">
                                                                            <BsCheckCircle size={24}></BsCheckCircle>
