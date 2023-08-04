@@ -6,31 +6,26 @@ import { MdPanoramaFishEye } from "react-icons/md";
 import { FaEdit, FaRegEyeSlash } from "react-icons/fa";
 import { BsCheckCircle } from "react-icons/bs";
 import AddList from "../TaskManegment/AddList/AddList";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 import './TodoList.css'
 import TaskEdit from "../TaskManegment/TaskEdit/TaskEdit";
+import TaskApi from "../../Api/Taskapi";
 const ToDoList = () => {
 
      const [ShowModal, setShowModal] = useState(false)
      const [showUpdate, setShowUpdate] = useState(false)
+     const [updateId, setupdateId] = useState("")
      const [axiosSecure] = useAxiosSecure();
 
-
-     const { data, refetch, isLoading } = useQuery({
-          queryKey: ['task'],
-          queryFn: () => axiosSecure.get('http://localhost:5000/task')
-     })
-     const toDoData = data?.data
+     const [toDoData, refetch] = TaskApi()
 
 
 
 
 
      const handleDelete = (id) => {
-
           console.log(id);
           Swal.fire({
                title: 'Are you sure?',
@@ -61,6 +56,19 @@ const ToDoList = () => {
           })
      }
 
+
+     const handleUpdate = (id) => {
+          axiosSecure.patch(`/task/${id}`).then(result => {
+               console.log(result);
+               if (result) {
+                    refetch()
+                    toast.success('Successfully Task add!')
+               }
+          }).catch(error => {
+               console.log(error?.massage);
+               toast.error(`${error?.massage}`)
+          })
+     }
      return (
           <div className="  my-20 pt-10 ">
                <Container>
@@ -112,7 +120,7 @@ const ToDoList = () => {
                                         {toDoData &&
                                              toDoData?.map((item, index) => <tr key={index}>
                                                   <td>{index + 1}</td>
-                                                  <td >
+                                                  <td onClick={() => handleUpdate(item?._id)}>
 
                                                        {
                                                             item?.status == "Pending" ? <> <div className=" cursor-pointer text-[#fa06dd]">
@@ -121,20 +129,17 @@ const ToDoList = () => {
                                                                  <BsCheckCircle size={24}></BsCheckCircle>
                                                             </div></>
                                                        }
-
-
-
                                                   </td>
                                                   <td>{item?.title}</td>
                                                   <td>{item?.description.slice(0, 15)}...</td>
                                                   <td className="BgColor text-white rounded-md inline-block cursor-pointer"> <FaRegEyeSlash size={24} ></FaRegEyeSlash>  </td>
                                                   <td>
-                                                     {
-                                                        item?.status == "Pending" ? <> <p className="text-[#ee3b3b]"> {item?.status} </p> </> : <> <p className=" text-[#137528]"> {item?.status} </p> </>
-                                                     }  
-                                                        
-                                                   </td>
-                                                  <td> <div onClick={()=> setShowUpdate(true)} className=" bg-[#ea1ef4] text-white rounded-md  p-2  inline-block cursor-pointer" > <FaEdit size={24}></FaEdit></div></td>
+                                                       {
+                                                            item?.status == "Pending" ? <> <p className="text-[#ee3b3b]"> {item?.status} </p> </> : <> <p className=" text-[#137528]"> {item?.status} </p> </>
+                                                       }
+
+                                                  </td>
+                                                  <td onClick={() => setupdateId(item._id)}> <div onClick={() => setShowUpdate(true)} className=" bg-[#ea1ef4] text-white rounded-md  p-2  inline-block cursor-pointer" > <FaEdit size={24}></FaEdit></div></td>
                                                   <td onClick={() => handleDelete(item?._id)} className=" bg-red-500 text-white rounded-md inline-block cursor-pointer"><AiOutlineDelete size={24}></AiOutlineDelete></td>
 
                                              </tr>)
@@ -145,33 +150,22 @@ const ToDoList = () => {
                          </div>
 
                     </div>
-
-
-
-
-
-
-
-
                     <div>
 
-
+                         {/* all Modal  */}
                          {
                               ShowModal ? (<AddList setShowModal={setShowModal}></AddList>) : null
                          }
                          {
-                              showUpdate ? (<TaskEdit setShowUpdate={setShowUpdate}></TaskEdit>) : null
+                              showUpdate ? (<TaskEdit updateId={updateId} setShowUpdate={setShowUpdate}></TaskEdit>) : null
                          }
 
-                           
+
                     </div>
                </Container>
 
-
-               <Toaster
-                    position="top-center"
-                    reverseOrder={false}
-               />
+               {/* Toaster  */}
+               <Toaster position="top-center" reverseOrder={false} />
 
 
           </div>

@@ -2,26 +2,34 @@
 import { MdModeEditOutline } from 'react-icons/md';
 import { useContext, useState } from 'react';
 import { toast } from 'react-hot-toast'
-import { AuthContact } from '../../../Component/AuthProvider/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-const TaskEdit = ({ setShowUpdate }) => {
+import { AuthContact } from '../../../Component/AuthProvider/AuthProvider';
+import TaskApi from '../../../Api/Taskapi';
+
+const TaskEdit = ({ setShowUpdate, updateId }) => {
      const { user } = useContext(AuthContact);
      const [date, setData] = useState('');
      const [axiosSecure] = useAxiosSecure();
-
+     const { data, isLoading } = useQuery({
+          queryKey: ['task', updateId],
+          queryFn: () => axiosSecure.get(`http://localhost:5000/task/${updateId}`)
+     })
+     const Data = data?.data
+     const [toDoData, refetch] = TaskApi()
      const handleSubmit = (e) => {
           e.preventDefault();
           const from = e.target;
           const title = from.title.value;
           const description = from.description.value;
+          const TaskData = { title, description, date, name: user?.displayName, email: user?.email, status: 'pending', time: Data?.time };
 
-          const TaskData = { title, description, date, name: user?.displayName, email: user?.email, status: 'pending', time: new Date() };
-          console.log(TaskData);
-
-          axiosSecure.patch('/task', TaskData).then(result => {
+          // axiosSecure PUt Data 
+          axiosSecure.put(`/task/${updateId}`, TaskData).then(result => {
                console.log(result);
                if (result) {
                     setShowUpdate(false)
+                    refetch()
                     toast.success('Successfully Task add!')
                }
           }).catch(error => {
@@ -55,7 +63,7 @@ const TaskEdit = ({ setShowUpdate }) => {
 
                                              <div className='inputFild relative '>
                                                   <div className=' '>
-                                                       <input className=' p-3 w-full placeholder:text-xl   outline-none border border-[#2f2d2d]' type="text" name="title" placeholder='title' id="" />
+                                                       <input defaultValue={Data?.title} className=' p-3 w-full placeholder:text-xl   outline-none border border-[#2f2d2d]' type="text" name="title" placeholder='title' id="" />
 
                                                   </div>
                                                   <p> Input your title</p>
@@ -63,7 +71,7 @@ const TaskEdit = ({ setShowUpdate }) => {
                                              {/* nput your description  */}
                                              <div className='inputFild relative  mt-6'>
                                                   <div className=' '>
-                                                       <textarea name="description" className=' p-3 w-full placeholder:text-xl   outline-none border border-[#2f2d2d]' id="" cols="30" rows="5" placeholder='type description'></textarea>
+                                                       <textarea defaultValue={Data?.description} name="description" className=' p-3 w-full placeholder:text-xl   outline-none border border-[#2f2d2d]' id="" cols="30" rows="5" placeholder='type description'></textarea>
 
                                                   </div>
                                                   <p> Input your description</p>
@@ -72,7 +80,7 @@ const TaskEdit = ({ setShowUpdate }) => {
                                              <div className='inputFild relative  mt-6'>
                                                   <div className=' '>
 
-                                                       <input onChange={(e) => setData(e.target.value)} className=' p-3 w-full placeholder:text-xl   outline-none border border-[#2f2d2d]' type="date" name="date" placeholder='date' id="" />
+                                                       <input defaultValue={Data?.date} onChange={(e) => setData(e.target.value)} className=' p-3 w-full placeholder:text-xl   outline-none border border-[#2f2d2d]' type="date" name="date" id="" />
 
                                                   </div>
                                                   <p> Input your Date</p>
