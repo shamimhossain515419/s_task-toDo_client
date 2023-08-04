@@ -8,7 +8,7 @@ const ProfileModal = () => {
      const { user, loading } = useContext(AuthContact);
      return (
           <div>
-               <div className='  fixed top-20  right-16  bg-[#fff] z-50 p-4 rounded-lg'>
+               <div className='  fixed top-20    shadow-lg right-4 md:right-16  bg-[#fff] z-50 p-4 rounded-lg'>
 
                     <div className=' text-center '>
                          <img className=' mx-auto h-28 w-28 rounded-full border border-blue-400' src={user?.photoURL} alt="" />
@@ -20,9 +20,9 @@ const ProfileModal = () => {
                     </div>
                     <hr />
                     <div className=' my-1'>
-                         <Link className=' flex gap-1 items-center  my-4 hover:translate-x-2 duration-300'>  <BiSolidDashboard size={20}></BiSolidDashboard>  <span> Dashboard</span></Link>
-                         <Link className=' flex gap-1 items-center  my-4 hover:translate-x-2 duration-300'>  <SiTask size={20}></SiTask>  <span> Your Task</span></Link>
-                         <Link className=' flex gap-1 items-center  my-4 hover:translate-x-2 duration-300'>  <AiOutlineLogin size={20}></AiOutlineLogin>  <span> Logout</span></Link>
+                         <Link className=' flex gap-1 items-center  my-4 hover:translate-x-2 hover:bg-[#E8E9EB] px-4 rounded-lg py-2 duration-300'>  <BiSolidDashboard size={20}></BiSolidDashboard>  <span> Dashboard</span></Link>
+                         <Link className=' flex gap-1 items-center  my-4 hover:translate-x-2 hover:bg-[#E8E9EB]  px-4 rounded-lg py-2 duration-300'>  <SiTask size={20}></SiTask>  <span> Your Task</span></Link>
+                         <Link className=' flex gap-1 items-center  my-4 hover:translate-x-2 hover:bg-[#E8E9EB] px-4 rounded-lg py-2  duration-300'>  <AiOutlineLogin size={20}></AiOutlineLogin>  <span> Logout</span></Link>
 
                     </div>
 

@@ -34,7 +34,7 @@ const Banner = () => {
 
                          {/* getStart buttton  */}
                          <div className='max-w-[250px]  mx-auto'>
-                              <Link className='getStart BgColor my-5'>
+                              <Link to={'/todoList'} className='getStart BgColor my-5'>
 
                                    <MdOutlineAdd size={24}></MdOutlineAdd>
                                    <span className=' uppercase    text-lx font-bold'> add your ToDo new </span>

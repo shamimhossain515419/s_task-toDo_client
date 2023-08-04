@@ -1,0 +1,79 @@
+[
+     {
+          "name": "John Doe",
+          "email": "john.doe@example.com",
+          "description": "Fix the bug in the login functionality",
+          "title": "Bug Fixing",
+          "status": "Pending"
+     },
+     {
+          "name": "Jane Smith",
+          "email": "jane.smith@example.com",
+          "description": "Update the user interface design",
+          "title": "UI Redesign",
+          "status": "Pending"
+     },
+     {
+          "name": "Michael Johnson",
+          "email": "michael.johnson@example.com",
+          "description": "Write a new API endpoint for data retrieval",
+          "title": "API Development",
+          "status": "Completed"
+     },
+     {
+          "name": "Emily Lee",
+          "email": "emily.lee@example.com",
+          "description": "Create a marketing campaign for the new product launch",
+          "title": "Marketing Campaign",
+          "status": "Pending"
+     },
+     {
+          "name": "Robert Wang",
+          "email": "robert.wang@example.com",
+          "description": "Research and analyze market trends",
+          "title": "Market Research",
+          "status": "Pending"
+     },
+     {
+          "name": "Sarah Davis",
+          "email": "sarah.davis@example.com",
+          "description": "Prepare a financial report for Q3",
+          "title": "Financial Reporting",
+          "status": "Completed"
+     },
+     {
+          "name": "Daniel Kim",
+          "email": "daniel.kim@example.com",
+          "description": "Optimize website performance for faster loading",
+          "title": "Performance Optimization",
+          "status": "Pending"
+     },
+     {
+          "name": "Amy Chen",
+          "email": "amy.chen@example.com",
+          "description": "Develop new features for the mobile app",
+          "title": "Mobile App Development",
+          "status": "Pending"
+     },
+     {
+          "name": "Thomas Adams",
+          "email": "thomas.adams@example.com",
+          "description": "Conduct training sessions for new employees",
+          "title": "Employee Training",
+          "status": "Completed"
+     },
+     {
+          "name": "Laura Hernandez",
+          "email": "laura.hernandez@example.com",
+          "description": "Design a company logo for rebranding",
+          "title": "Logo Design",
+          "status": "Pending"
+     },
+     {
+          "name": "William Brown",
+          "email": "william.brown@example.com",
+          "description": "Write content for the blog post series",
+          "title": "Content Creation",
+          "status": "Pending"
+     }
+]
