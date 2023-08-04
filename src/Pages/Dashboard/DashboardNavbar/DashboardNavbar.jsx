@@ -4,13 +4,15 @@ import { BsPenFill } from 'react-icons/bs';
 import { FiLogIn } from 'react-icons/fi';
 import { NavLink } from 'react-router-dom';
 import { AuthContact } from '../../../Component/AuthProvider/AuthProvider';
+import img from '../../../../public/task.png'
 const DashboardNavbar = () => {
      const { user } = useContext(AuthContact);
      return (
           <div className='  mt-32  p-4 '>
 
-               <img src={user?.photoURL} className='  my-4 block mx-auto h-24 w-24 rounded-full
-                     border-2 border-blue-500 ' alt="" />
+               <img src={img} className='  my-4 block mx-auto h-20 w-20 
+                       ' alt="" />
+                       <h1 className=' text-2xl   font-bold my-3 text-center '> S-task-Todo</h1>
 
                <hr />
                <NavLink to={'/dashboard'} className={({ isActive }) => isActive ? 'mt-10   my-4 flex gap-2 items-center text-blue-500' : 'mt-2   my-4 flex gap-2 items-center'}>

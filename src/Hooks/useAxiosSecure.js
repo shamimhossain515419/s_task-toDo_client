@@ -8,11 +8,11 @@ import { AuthContact } from '../Component/AuthProvider/AuthProvider'
 
 
 const axiosSecure = axios.create({
-     baseURL: `http://localhost:5000`,
+     baseURL: `https://s-task-to-do-setver.vercel.app`,
 })
 
 const useAxiosSecure = () => {
-     const { logOut } = useContext(AuthContact)
+     const { LogOut } = useContext(AuthContact)
      const navigate = useNavigate()
 
      useEffect(() => {
@@ -31,13 +31,13 @@ const useAxiosSecure = () => {
                          error.response &&
                          (error.response.status === 401 || error.response.status === 403)
                     ) {
-                         await logOut()
+                         await LogOut()
                          navigate('/login')
                     }
                     return Promise.reject(error)
                }
           )
-     }, [logOut, navigate, axiosSecure])
+     }, [LogOut, navigate, axiosSecure])
 
      return [axiosSecure]
 }

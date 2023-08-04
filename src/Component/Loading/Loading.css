@@ -1,0 +1,23 @@
+.loading{
+     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+      
+       border-radius: 10px;
+      
+      animation: rotate 1s linear infinite;
+}
+@keyframes rotate {
+     0% {
+      
+      box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+
+     }
+     50% {
+      box-shadow: 0 0 0 0 ;
+     
+
+     }
+     100%{
+          box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+      
+     }
+   }

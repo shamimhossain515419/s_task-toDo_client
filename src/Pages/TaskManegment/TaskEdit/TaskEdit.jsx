@@ -13,7 +13,7 @@ const TaskEdit = ({ setShowUpdate, updateId }) => {
      const [axiosSecure] = useAxiosSecure();
      const { data, isLoading } = useQuery({
           queryKey: ['task', updateId],
-          queryFn: () => axiosSecure.get(`http://localhost:5000/task/${updateId}`)
+          queryFn: () => axiosSecure.get(`https://s-task-to-do-setver.vercel.app/task/${updateId}`)
      })
      const Data = data?.data
      const [toDoData, refetch] = TaskApi()

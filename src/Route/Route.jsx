@@ -8,12 +8,13 @@ import Dashboard from '../Pages/Dashboard/Dashboard/Dashboard';
 import MyDashboard from '../Pages/Dashboard/Dashboard/MyDashboard';
 import ErrorPage from '../share/ErrorPage/ErrorPage';
 import ManageTodo from '../Pages/manageTodo/manageTodo';
+import PrivateRoute from './PrivateRoute';
 
 const Route = createBrowserRouter([
      {
           path: '/',
           element: <Main></Main>,
-          errorElement:<ErrorPage></ErrorPage>,
+          errorElement: <ErrorPage></ErrorPage>,
           children: [
                {
                     path: '/',
@@ -21,7 +22,7 @@ const Route = createBrowserRouter([
                },
                {
                     path: '/todoList',
-                    element: <ToDoList></ToDoList>
+                    element: <PrivateRoute> <ToDoList></ToDoList> </PrivateRoute>
                }
           ]
 
@@ -32,15 +33,15 @@ const Route = createBrowserRouter([
      },
      {
           path: '/dashboard',
-          element: <Dashboard></Dashboard>,
-          children:[
+          element: <PrivateRoute> <Dashboard></Dashboard>,</PrivateRoute>,
+          children: [
                {
-                     path:'/dashboard',
-                     element:<MyDashboard></MyDashboard>
+                    path: '/dashboard',
+                    element: <MyDashboard></MyDashboard>
                },
                {
-                     path:'/dashboard/task',
-                     element:<ManageTodo></ManageTodo>
+                    path: '/dashboard/task',
+                    element: <ManageTodo></ManageTodo>
                }
           ]
      },

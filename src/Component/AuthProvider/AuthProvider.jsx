@@ -35,8 +35,9 @@ const AuthProvider = ({ children }) => {
                setUser(currentUser)
 
                if (currentUser?.email) {
-                    axios.post('http://localhost:5000/jwt')
+                    axios.post('https://s-task-to-do-setver.vercel.app/jwt')
                          .then(data => {
+                              setLoading(false)
                               localStorage.setItem('access-token', data?.data?.token)
                          }).catch(error => {
                               localStorage.removeItem('access-token')
@@ -45,10 +46,7 @@ const AuthProvider = ({ children }) => {
                } else {
                     localStorage.removeItem('access-token')
                }
-               
-               if (currentUser) {
-                    setLoading(false)
-               }
+
 
           })
           return () => {

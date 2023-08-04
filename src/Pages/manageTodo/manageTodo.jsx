@@ -1,12 +1,17 @@
 import { BiSolidEyedropper } from "react-icons/bi";
 import TaskApi from "../../Api/Taskapi";
 import ManageCard from "./ManageCard";
+import { useEffect, useState } from "react";
 
 
 const ManageTodo = () => {
-
+     const [taskData, setTaskData] = useState([]);
+     const [Change, setChange] = useState("")
      const [toDoData, refetch] = TaskApi();
 
+     // const filteredData = Change === 'all' ? toDoData : toDoData?.filter(item => item.status === Change);
+
+     // console.log(filteredData);
 
      return (
           <div className=" my-20 p-2 md:p-10">
@@ -18,7 +23,13 @@ const ManageTodo = () => {
                          <p className=" text-base my-2"> You can see all the toDoS which are added by you.</p>
                     </div>
                     <div>
-                         <button> Sorting </button>
+                         <div>
+                              <select className="appearance-none bg-white border border-gray-300 rounded px-10 text-center py-2 pr-8 shadow-sm focus:outline-none focus:border-blue-500" defaultValue={"All"}  onChange={(e) => setChange(e.target.value)} name="" id="">
+                                   <option value="All"> All</option>
+                                   <option value="Complete"> Complete</option>
+                                   <option value="Pending"> Pending</option>
+                              </select>
+                         </div>
                     </div>
                </div>
 
