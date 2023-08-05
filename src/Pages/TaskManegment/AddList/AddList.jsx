@@ -10,25 +10,24 @@ const AddList = ({ setShowModal }) => {
      const { user } = useContext(AuthContact);
      const [date, setData] = useState('');
      const [axiosSecure] = useAxiosSecure();
-     const [refetch] = TaskApi()
+     const [toDoData, refetch] = TaskApi()
 
      const handleSubmit = (e) => {
           e.preventDefault();
           const from = e.target;
           const title = from.title.value;
           const description = from.description.value;
-          const TaskData = { title, description, date, name: user?.displayName, email: user?.email, status:'Pending', time: new Date() };
+          const TaskData = { title, description, date, name: user?.displayName, email: user?.email, status: 'Pending', time: new Date() };
           console.log(TaskData);
 
           axiosSecure.post('/task', TaskData).then(result => {
                console.log(result);
-               if (result) {
-                    setShowModal(false)
-                    refetch();
-                    toast.success('Successfully Task add!')
-               }
+               toast.success('Successfully Task add!')
+               setShowModal(false)
+               refetch();
+
+
           }).catch(error => {
-               console.log(error?.massage);
                toast.error(`${error?.massage}`)
           })
 

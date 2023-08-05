@@ -4,10 +4,10 @@ const Loading = ({ children }) => {
      const [seconds, setSeconds] = useState(0);
 
      useEffect(() => {
-          if (seconds<=10) {
+          if (seconds <= 10) {
                const interval = setInterval(() => {
                     setSeconds(prevSeconds => prevSeconds + 1);
-               }, 1000);
+               }, 500);
 
                return () => clearInterval(interval);
           }
@@ -16,7 +16,7 @@ const Loading = ({ children }) => {
 
      }, [seconds]);
 
-     if (seconds >= 2) {
+     if (seconds >= 1) {
           return children
      }
 

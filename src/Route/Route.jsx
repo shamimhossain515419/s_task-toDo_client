@@ -10,6 +10,7 @@ import ErrorPage from '../share/ErrorPage/ErrorPage';
 import ManageTodo from '../Pages/manageTodo/manageTodo';
 import PrivateRoute from './PrivateRoute';
 
+
 const Route = createBrowserRouter([
      {
           path: '/',
@@ -50,6 +51,7 @@ const Route = createBrowserRouter([
           path: '/login',
           element: <Login></Login>
      }
+    
 
 ])
 
