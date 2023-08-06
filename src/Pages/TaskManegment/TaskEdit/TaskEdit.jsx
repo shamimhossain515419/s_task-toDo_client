@@ -1,21 +1,23 @@
 
 import { MdModeEditOutline } from 'react-icons/md';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast'
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContact } from '../../../Component/AuthProvider/AuthProvider';
 import TaskApi from '../../../Api/Taskapi';
+import { json } from 'react-router-dom';
 
 const TaskEdit = ({ setShowUpdate, updateId }) => {
      const { user } = useContext(AuthContact);
      const [date, setData] = useState('');
      const [axiosSecure] = useAxiosSecure();
      const { data, isLoading } = useQuery({
-          queryKey: ['task', updateId],
-          queryFn: () => axiosSecure.get(`https://s-task-to-do-setver.vercel.app/task/${updateId}`)
-     })
-     const Data = data?.data
+          queryKey: ['taskSingle', updateId],
+          queryFn: () => axiosSecure.get(`/taskSingle/${updateId}`)
+     });
+
+    const Data = data?.data
      const [toDoData, refetch] = TaskApi()
      const handleSubmit = (e) => {
           e.preventDefault();

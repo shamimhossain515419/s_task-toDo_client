@@ -4,7 +4,8 @@ import { FaGoogle, FaFacebook, FaInstagram } from 'react-icons/fa'
 import moment from 'moment';
 const Footer = () => {
      return (
-          <div className=" FooterBg   py-6 ">
+          <div  style={{ clipPath: `ellipse(80% 100% at 51.45% 100%)` }}
+          className=" mt-16 md:mt-0 FooterBg   py-6 ">
                <div className=" Footer">
                     <div className=' text-lg my-5 text-center '>
                          <Link className=' hover:underline mx-2'>  About Me</Link>

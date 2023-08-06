@@ -9,6 +9,7 @@ import MyDashboard from '../Pages/Dashboard/Dashboard/MyDashboard';
 import ErrorPage from '../share/ErrorPage/ErrorPage';
 import ManageTodo from '../Pages/manageTodo/manageTodo';
 import PrivateRoute from './PrivateRoute';
+import Profile from '../Pages/Profile/Profile';
 
 
 const Route = createBrowserRouter([
@@ -24,6 +25,10 @@ const Route = createBrowserRouter([
                {
                     path: '/todoList',
                     element: <PrivateRoute> <ToDoList></ToDoList> </PrivateRoute>
+               },
+               {
+                    path: '/profile',
+                    element: <PrivateRoute> <Profile></Profile> </PrivateRoute>
                }
           ]
 

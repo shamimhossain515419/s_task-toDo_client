@@ -29,8 +29,8 @@ const ProfileModal = ({ setShowModal }) => {
                          <img className=' mx-auto h-28 w-28 rounded-full border border-blue-400' src={user?.photoURL} alt="" />
                          <h1 className=' text-2xl font-normal my-1  uppercase'> {user?.displayName} </h1>
                          <p> UseId:   {user?.uid.slice(0, 10)} </p>
-                         <div className='my-4'>
-                              <Link className=' text-xl font-normal BgColor   px-8 py-2 text-white rounded-xl'> View Profile </Link>
+                         <div onClick={()=>setShowModal(false)} className='my-4'>
+                              <Link to={'/profile'} className=' text-xl font-normal BgColor   px-8 py-2 text-white rounded-xl'> View Profile </Link>
                          </div>
                     </div>
                     <hr />

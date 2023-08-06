@@ -14,10 +14,12 @@ import TaskEdit from "../TaskManegment/TaskEdit/TaskEdit";
 import TaskApi from "../../Api/Taskapi";
 import { AuthContact } from "../../Component/AuthProvider/AuthProvider";
 import { Grid } from "react-loader-spinner";
+import TaskDetails from "../TaskManegment/taskDetails/TaskDetails";
 const ToDoList = () => {
      const [toDoData, refetch] = TaskApi();
      const [ShowModal, setShowModal] = useState(false)
      const [showUpdate, setShowUpdate] = useState(false)
+     const [Details, setDetails] = useState(false)
      const [updateId, setupdateId] = useState("")
      const [axiosSecure] = useAxiosSecure();
      const [searchData, setSearchData] = useState('')
@@ -159,7 +161,7 @@ const ToDoList = () => {
                                                             </td>
                                                             <td>{item?.title}</td>
                                                             <td>{item?.description.slice(0, 15)}...</td>
-                                                            <td className="BgColor text-white rounded-md inline-block cursor-pointer"> <FaRegEyeSlash size={24} ></FaRegEyeSlash>  </td>
+                                                            <td onClick={()=>setDetails(true)} className="BgColor text-white rounded-md inline-block cursor-pointer"> <FaRegEyeSlash onClick={() => setupdateId(item._id)} size={24} ></FaRegEyeSlash>  </td>
                                                             <td>
                                                                  {
                                                                       item?.status == "Pending" ? <> <p className="text-[#ee3b3b]"> {item?.status} </p> </> : <> <p className=" text-[#137528]"> {item?.status} </p> </>
@@ -205,6 +207,9 @@ const ToDoList = () => {
                          }
                          {
                               showUpdate ? (<TaskEdit updateId={updateId} setShowUpdate={setShowUpdate}></TaskEdit>) : null
+                         }
+                         {
+                              Details ? (<TaskDetails updateId={updateId} setDetails={setDetails}></TaskDetails>) : null
                          }
 
 
