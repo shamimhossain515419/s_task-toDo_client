@@ -12,7 +12,7 @@ const TaskApi = () => {
      })
      const toDoData = data?.data
 
-     return [toDoData, refetch]
+     return [toDoData, refetch,isLoading]
 };
 
 export default TaskApi;

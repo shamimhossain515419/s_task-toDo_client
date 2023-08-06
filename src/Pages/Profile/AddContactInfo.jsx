@@ -1,17 +1,13 @@
-
-
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast'
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { AuthContact } from '../../Component/AuthProvider/AuthProvider';
 
 
-const AddContactInfo = ({ setContect }) => {
+const AddContactInfo = ({ refetch, setContect }) => {
      const { user } = useContext(AuthContact);
      const [date, setData] = useState('');
      const [axiosSecure] = useAxiosSecure();
-     
-
      const handleSubmit = (e) => {
           e.preventDefault();
           const from = e.target;
@@ -22,7 +18,9 @@ const AddContactInfo = ({ setContect }) => {
           const UserData = { name: user?.displayName, email: user?.email, facebook, linkedin, number, address };
           axiosSecure.post('/user', UserData).then(result => {
                if (result) {
-                    setContect(false)
+                    setContect(false);
+
+                    refetch();
                     toast.success(" Successfully Update profile")
                }
           }).catch(error => {

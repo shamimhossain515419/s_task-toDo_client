@@ -114,7 +114,7 @@ const Profile = () => {
                     </div>
 
                     {
-                         contact ? <AddContactInfo setContect={setContect}></AddContactInfo> : null
+                         contact ? <AddContactInfo refetch={refetch} setContect={setContect}></AddContactInfo> : null
                     }
                </div>
           </Container>

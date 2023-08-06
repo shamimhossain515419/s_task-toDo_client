@@ -1,16 +1,14 @@
-
-import { MdModeEditOutline } from 'react-icons/md';
 import './addList.css'
 import { useContext, useState } from 'react';
 import { AuthContact } from '../../../Component/AuthProvider/AuthProvider';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { toast } from 'react-hot-toast'
-import TaskApi from '../../../Api/Taskapi';
-const AddList = ({ setShowModal }) => {
+
+const AddList = ({refetch, setShowModal }) => {
      const { user } = useContext(AuthContact);
      const [date, setData] = useState('');
      const [axiosSecure] = useAxiosSecure();
-     const [toDoData, refetch] = TaskApi()
+    
 
      const handleSubmit = (e) => {
           e.preventDefault();
@@ -21,10 +19,12 @@ const AddList = ({ setShowModal }) => {
           console.log(TaskData);
 
           axiosSecure.post('/task', TaskData).then(result => {
-               console.log(result);
-               toast.success('Successfully Task add!')
-               setShowModal(false)
-               refetch();
+               if (result) {
+                    toast.success('Successfully Task add!')
+                    setShowModal(false)
+                    refetch();
+               }
+
 
 
           }).catch(error => {
