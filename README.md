@@ -1,12 +1,10 @@
 # React + Vite
+# S-ToDo=Task
 
  
-     # S-task-toDo
-
-    
-     <img   align="center" src="https://i.ibb.co/zfRBw1h/Screenshot-2023-11-29-170112.png" width="100%" alt="">
 
 
+  <img   align="center" src="https://i.ibb.co/zfRBw1h/Screenshot-2023-11-29-170112.png" width="100%" alt="">
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
