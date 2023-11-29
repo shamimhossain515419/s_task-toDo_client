@@ -23,7 +23,7 @@ const Loading = ({ children }) => {
      return (
           <div className=" flex justify-center items-center w-full h-screen ">
                <div className=" w-[150px] px-7 h-[150px] flex justify-center items-center  loading  p-10  text-2xl font-medium text-blue-500 ">
-                    {"</Task-todo>"}
+                    {"</Shamim>"}
                </div>
           </div>
      );

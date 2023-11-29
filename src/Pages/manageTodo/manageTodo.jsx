@@ -9,9 +9,18 @@ const ManageTodo = () => {
      const [Change, setChange] = useState("")
      const [toDoData, refetch] = TaskApi();
 
-     // const filteredData = Change === 'all' ? toDoData : toDoData?.filter(item => item.status === Change);
 
-     // console.log(filteredData);
+
+     useEffect(() => {
+          const filteredData = Change === 'Complete'
+               ? toDoData?.filter(item => item.status === Change)
+               : Change === 'Pending'
+                    ? toDoData?.filter(item => item.status === Change)
+                    : toDoData;
+
+                    setTaskData(filteredData);
+     }, [Change,toDoData]);
+     console.log(Change);
 
      return (
           <div className=" my-20 p-2 md:p-10">
@@ -24,7 +33,7 @@ const ManageTodo = () => {
                     </div>
                     <div>
                          <div>
-                              <select className="appearance-none bg-white border border-gray-300 rounded px-10 text-center py-2 pr-8 shadow-sm focus:outline-none focus:border-blue-500" defaultValue={"All"}  onChange={(e) => setChange(e.target.value)} name="" id="">
+                              <select className="appearance-none bg-white border border-gray-300 rounded px-10 text-center py-2 pr-8 shadow-sm focus:outline-none focus:border-blue-500" defaultValue={"All"} onChange={(e) => setChange(e.target.value)} name="" id="">
                                    <option value="All"> All</option>
                                    <option value="Complete"> Complete</option>
                                    <option value="Pending"> Pending</option>
@@ -36,12 +45,12 @@ const ManageTodo = () => {
 
                <div>
                     {
-                         toDoData || toDoData?.length > 0 ? <>
+                         taskData || taskData?.length > 0 ? <>
 
                               <div className=" md:grid  grid-cols-2 gap-10 ">
 
                                    {
-                                        toDoData?.map(item => <ManageCard item={item} key={item._id}>
+                                        taskData?.map(item => <ManageCard item={item} key={item._id}>
 
 
 

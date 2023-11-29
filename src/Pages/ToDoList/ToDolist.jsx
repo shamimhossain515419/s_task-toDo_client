@@ -1,7 +1,7 @@
 import { AiOutlineDelete, AiOutlineSearch } from "react-icons/ai";
 import Container from "../../Component/Container";
 import { BiSolidEyedropper } from "react-icons/bi";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { MdPanoramaFishEye } from "react-icons/md";
 import { FaEdit, FaRegEyeSlash } from "react-icons/fa";
 import { BsCheckCircle } from "react-icons/bs";
@@ -16,25 +16,21 @@ import { AuthContact } from "../../Component/AuthProvider/AuthProvider";
 import TaskDetails from "../TaskManegment/taskDetails/TaskDetails";
 import { Dna } from "react-loader-spinner";
 const ToDoList = () => {
-     const [toDoData, refetch, isLoading] = TaskApi();
+
      const [ShowModal, setShowModal] = useState(false)
      const [showUpdate, setShowUpdate] = useState(false)
      const [Details, setDetails] = useState(false)
      const [updateId, setupdateId] = useState("")
      const [axiosSecure] = useAxiosSecure();
-     const [searchData, setSearchData] = useState('')
-     const [todoTask, setTodoTask] = useState(toDoData);
+     const [searchData, setSearchData] = useState("")
+     const [TodoTask, setTodoTask] = useState([])
      const { user } = useContext(AuthContact)
-
-   
-
+     const [toDoData, refetch, isLoading] = TaskApi();
+     console.log(searchData);
      const handleOnchange = (e) => {
           const value = e.target.value;
           setSearchData(value);
-          const filtered = toDoData?.filter((item) =>
-               item.title.toLowerCase().includes(value.toLowerCase())
-          );
-          setTodoTask(filtered);
+
      }
      const handleDelete = (id) => {
           console.log(id);
@@ -67,7 +63,6 @@ const ToDoList = () => {
           })
      }
 
-     // const handleUpdate = (id) => {
 
      const handleUpdate = (id) => {
           axiosSecure.patch(`/task/${id}`).then(result => {
@@ -81,6 +76,16 @@ const ToDoList = () => {
                toast.error(`${error?.massage}`)
           })
      }
+
+
+     useEffect(() => {
+
+          const filtered = toDoData?.filter((item) =>
+               item.title.toLowerCase().includes(searchData.toLowerCase())
+          );
+          setTodoTask(filtered);
+     }, [searchData, toDoData]);
+
 
      return (
           <div className="  my-20 pt-10 ">
@@ -103,14 +108,14 @@ const ToDoList = () => {
                                         />
                                    </div>
                               </div> : <>  {
-                                   toDoData && toDoData.length > 0 ? <> {/* toDoListHeader  */}
+                                   TodoTask && TodoTask.length > 0 ? <> {/* toDoListHeader  */}
                                         <div className="   p-4 ">
 
                                              <div className="   ">
                                                   <div className=" w-full  md:flex md:justify-between items-center">
 
                                                        <div className=" my-5 relative w-full md:w-[300px] ">
-                                                            <input onChange={handleOnchange} value={searchData} className=" search p-3  relative w-full border border-[#222121] " type="text" placeholder="Search by title" name="" id="" />
+                                                            <input onChange={(e) => setSearchData(e.target.value)} value={searchData} className=" search p-3  relative w-full border border-[#222121] " type="text" placeholder="Search by title" name="" id="" />
                                                             <div className=" absolute right-0 top-0   h-full  flex justify-center items-center px-4 cursor-pointer text-white bg-[#080808]">
                                                                  <AiOutlineSearch size={28}></AiOutlineSearch>
                                                             </div>
@@ -146,8 +151,8 @@ const ToDoList = () => {
                                                   </thead>
                                                   <tbody>
                                                        {/* toDoData  */}
-                                                       {toDoData &&
-                                                            toDoData?.map((item, index) => <tr key={index}>
+                                                       {TodoTask &&
+                                                            TodoTask?.map((item, index) => <tr key={index}>
                                                                  <td>{index + 1}</td>
                                                                  <td onClick={() => handleUpdate(item?._id)}>
 

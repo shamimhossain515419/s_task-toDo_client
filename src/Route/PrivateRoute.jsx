@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { AuthContact } from "../Component/AuthProvider/AuthProvider";
 import { Oval } from "react-loader-spinner";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({ children }) => {
 
      const { user, loading, } = useContext(AuthContact);
+     const location = useLocation();
 
      if (loading) {
           <div className=" flex justify-center items-center h-screen">
@@ -22,16 +23,16 @@ const PrivateRoute = ({ children }) => {
                     strokeWidth={2}
                     strokeWidthSecondary={2}
                />
-           </div>
-     }
-
-     if (!user) {
+          </div>
+     } else if (user) {
+          return children
+     } else {
           return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
      }
 
 
 
-     return children
+
 
 
 

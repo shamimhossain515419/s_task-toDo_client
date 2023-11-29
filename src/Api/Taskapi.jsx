@@ -7,12 +7,13 @@ const TaskApi = () => {
      const { user } = useContext(AuthContact)
      const [axiosSecure] = useAxiosSecure();
      const { data, refetch, isLoading } = useQuery({
-          queryKey: ['task', user],
-          queryFn: () => axiosSecure.get(`/task/${user?.email}`)
+          queryKey: ['task', user, ],
+          queryFn: () => axiosSecure.get(`/task?email=${user?.email}`)
      })
+     console.log(data);
      const toDoData = data?.data
 
-     return [toDoData, refetch,isLoading]
+     return [toDoData, refetch, isLoading]
 };
 
 export default TaskApi;

@@ -13,8 +13,8 @@ const Navbar = () => {
      const [dropDown, setDeopWown] = useState(false);
      const { user, loading } = useContext(AuthContact);
      const [showModal, setShowModal] = useState(false)
-     
 
+     console.log(user);
 
 
      return (
@@ -29,8 +29,11 @@ const Navbar = () => {
 
                                         <div className=' hidden md:block  mt-1 space-x-5  ml-4 '>
                                              <NavLink className={({ isActive }) => isActive ? ` textColor  font-semibold   ` : `font-semibold`} to={'/'}> Home</NavLink>
-                                             <NavLink className={({ isActive }) => isActive ? ` textColor  font-semibold   ` : `font-semibold`} to={'/todoList'}> todoList</NavLink>
-                                           
+                                             <NavLink className={({ isActive }) => isActive ? ` textColor  font-semibold   ` : `font-semibold`} to={'/todoList'}> TodoList</NavLink>
+                                             {
+                                                  user?.email ? <NavLink className={({ isActive }) => isActive ? ` textColor  font-semibold   ` : `font-semibold`} to={'/dashboard'}> Dashboard</NavLink> : null
+                                             }
+
                                         </div>
 
                                    </div>
@@ -42,7 +45,7 @@ const Navbar = () => {
                                              user ? <div onClick={() => setDeopWown(!dropDown)} className='  cursor-pointer  flex items-center gap-2'>
                                                   <p className=' text-xl font-normal uppercase '>{user?.displayName} </p>
                                                   <img onClick={() => setShowModal(!showModal)} className=' border-2 border-blue-500 h-12 w-12 rounded-full object-cover ' src={user?.photoURL} alt="" />
-                                             </div> : <Link  to={'/login'} className='  cursor-pointer bg-[#E2EAF8] textColor  text-lg font-medium text-white px-4 py-2 rounded-md mx-2 flex items-center gap-1'>
+                                             </div> : <Link to={'/login'} className='  cursor-pointer bg-[#E2EAF8] textColor  text-lg font-medium text-white px-4 py-2 rounded-md mx-2 flex items-center gap-1'>
                                                   <AiOutlineArrowRight></AiOutlineArrowRight>
                                                   <span className=' text-xl font-medium uppercase '> GetStart</span>
                                              </Link>

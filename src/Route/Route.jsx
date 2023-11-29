@@ -43,11 +43,15 @@ const Route = createBrowserRouter([
           children: [
                {
                     path: '/dashboard',
-                    element: <MyDashboard></MyDashboard>
+                    element: <PrivateRoute> <Profile></Profile></PrivateRoute>
                },
                {
                     path: '/dashboard/task',
-                    element: <ManageTodo></ManageTodo>
+                    element: <PrivateRoute> <ManageTodo></ManageTodo></PrivateRoute>
+               },
+               {
+                    path: '/dashboard/to-do-task',
+                    element: <PrivateRoute><ToDoList></ToDoList></PrivateRoute>
                }
           ]
      },
@@ -56,7 +60,7 @@ const Route = createBrowserRouter([
           path: '/login',
           element: <Login></Login>
      }
-    
+
 
 ])
 

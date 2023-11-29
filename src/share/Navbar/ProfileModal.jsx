@@ -21,6 +21,8 @@ const ProfileModal = ({ setShowModal }) => {
                toast.error(" Successfully Logout")
           });
      }
+
+     console.log(user);
      return (
           <div>
                <div className='  fixed top-20    shadow-lg right-4 md:right-16  bg-[#fff] z-50 p-4 rounded-lg'>
@@ -37,7 +39,7 @@ const ProfileModal = ({ setShowModal }) => {
                     <div className=' my-1'>
                          <Link onClick={()=>setShowModal(false)} to={'/dashboard'} className=' flex gap-1 items-center  my-4 hover:translate-x-2 hover:bg-[#E8E9EB] px-4 rounded-lg py-2 duration-300'>  <BiSolidDashboard size={20}></BiSolidDashboard>  <span> Dashboard</span></Link>
                          <Link onClick={()=>setShowModal(false)}  to={'/dashboard/task'} className=' flex gap-1 items-center  my-4 hover:translate-x-2 hover:bg-[#E8E9EB]  px-4 rounded-lg py-2 duration-300'>  <SiTask size={20}></SiTask>  <span> Your Task</span></Link>
-                         <div onClick={handleLogout} className=' flex gap-1 items-center  my-4 hover:translate-x-2 hover:bg-[#E8E9EB] px-4 rounded-lg py-2  duration-300'>  <AiOutlineLogin size={20}></AiOutlineLogin>  <span> Logout</span></div>
+                         <div onClick={handleLogout} className=' flex gap-1  cursor-pointer items-center  my-4 hover:translate-x-2 hover:bg-[#E8E9EB] px-4 rounded-lg py-2  duration-300'>  <AiOutlineLogin size={20}></AiOutlineLogin>  <span> Logout</span></div>
 
                     </div>
 
