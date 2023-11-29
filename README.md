@@ -1,9 +1,11 @@
 # React + Vite
 
  
- S-task-toDo
- 
-<p align="left"> <img src="[https://komarev.com/ghpvc/?username=shamimhossain515419&label=Profile%20views&color=0e75b6&style=flat](https://i.ibb.co/zfRBw1h/Screenshot-2023-11-29-170112.png)" alt="todo tast" /> </p>
+     # S-task-toDo
+
+    
+     <img   align="center" src="https://i.ibb.co/zfRBw1h/Screenshot-2023-11-29-170112.png" width="100%" alt="">
+
 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
